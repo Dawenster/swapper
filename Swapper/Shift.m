@@ -13,28 +13,23 @@
 - (NSString *)formatTitle:(Shift *)shift
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMM d"];
-    NSString *dateAsString = [formatter stringFromDate:shift.date];
-    [formatter setDateFormat:@"h:m"];
-    NSString *timeAsString = [formatter stringFromDate:shift.date];
-    NSString *titleText = dateAsString;
-    NSString *hours = [NSString stringWithFormat:@"%d hrs", shift.duration];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+    [formatter setLocale:locale];
     
-    titleText = [titleText stringByAppendingString:@" @ "];
-    titleText = [titleText stringByAppendingString:timeAsString];
-    titleText = [titleText stringByAppendingString:@", "];
-    titleText = [titleText stringByAppendingString:hours];
+    [formatter setDateFormat:@"EEE, MMM d"];
+    NSString *dateAsString = [formatter stringFromDate:shift.date];
+    [formatter setDateFormat:@"HH:mm"];
+    NSString *timeAsString = [formatter stringFromDate:shift.date];
+    // NSString *hours = [NSString stringWithFormat:@"(%d hrs)", shift.duration];
+    
+    NSString *titleText = [NSString stringWithFormat:@"%@ @ %@", dateAsString, timeAsString];
     
     return titleText;
 }
 
 - (NSString *)formatSubTitle:(Shift *)shift
 {
-    NSString *subTitleText = shift.name;
-    subTitleText = [subTitleText stringByAppendingString:@", "];
-    subTitleText = [subTitleText stringByAppendingString:shift.location];
-    subTitleText = [subTitleText stringByAppendingString:@" "];
-    subTitleText = [subTitleText stringByAppendingString:shift.locationDetail];
+    NSString *subTitleText = [NSString stringWithFormat:@"%@, %@ %@", shift.name, shift.location, shift.locationDetail];
     
     return subTitleText;
 }

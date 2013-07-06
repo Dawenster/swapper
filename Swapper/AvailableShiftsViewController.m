@@ -21,20 +21,6 @@
 {
     [super viewDidLoad];
 	shifts = [[NSMutableArray alloc] initWithCapacity:20];
-    
-    Shift *shift;
-    
-    shift = [[Shift alloc] init];
-    shift.name = @"David Wen";
-    shift.location = @"BUH";
-    shift.locationDetail = @"3D";
-    shift.date = [NSDate date];
-    shift.duration = 12;
-    shift.email = @"david@gmail.com";
-    shift.taken = NO;
-    shift.notes = @"I'll give you a cookie if you take this shift!";
-    
-    [shifts addObject:shift];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +54,38 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [shifts removeObjectAtIndex:indexPath.row];
+    
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
+- (void)addShiftViewControllerDidCancel:(AddShiftViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addShiftViewController:(AddShiftViewController *)controller didFinishAddingShift:(Shift *)shift
+{
+    int newRowIndex = [shifts count];
+    [shifts addObject:shift];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"AddShift"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        AddShiftViewController *controller = (AddShiftViewController *)navigationController.topViewController;
+        controller.delegate = self;
+    }
+}
 
 @end

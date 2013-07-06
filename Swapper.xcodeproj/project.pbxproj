@@ -19,6 +19,7 @@
 		263D0D1C178893E700DF385D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263D0D1A178893E700DF385D /* MainStoryboard.storyboard */; };
 		263D0D1F178893E700DF385D /* AvailableShiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */; };
 		263D0D271788A76A00DF385D /* Shift.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D261788A76A00DF385D /* Shift.m */; };
+		263D0D2A1788C49100DF385D /* AddShiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D291788C49000DF385D /* AddShiftViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvailableShiftsViewController.m; sourceTree = "<group>"; };
 		263D0D251788A76A00DF385D /* Shift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shift.h; sourceTree = "<group>"; };
 		263D0D261788A76A00DF385D /* Shift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shift.m; sourceTree = "<group>"; };
+		263D0D281788C49000DF385D /* AddShiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddShiftViewController.h; sourceTree = "<group>"; };
+		263D0D291788C49000DF385D /* AddShiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddShiftViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				263D0D11178893E700DF385D /* SwapperAppDelegate.h */,
 				263D0D12178893E700DF385D /* SwapperAppDelegate.m */,
 				263D0D1A178893E700DF385D /* MainStoryboard.storyboard */,
+				263D0D281788C49000DF385D /* AddShiftViewController.h */,
+				263D0D291788C49000DF385D /* AddShiftViewController.m */,
 				263D0D1D178893E700DF385D /* AvailableShiftsViewController.h */,
 				263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */,
 				263D0D251788A76A00DF385D /* Shift.h */,
@@ -183,6 +188,7 @@
 				263D0D13178893E700DF385D /* SwapperAppDelegate.m in Sources */,
 				263D0D1F178893E700DF385D /* AvailableShiftsViewController.m in Sources */,
 				263D0D271788A76A00DF385D /* Shift.m in Sources */,
+				263D0D2A1788C49100DF385D /* AddShiftViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
