@@ -18,6 +18,7 @@
 		263D0D19178893E700DF385D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 263D0D18178893E700DF385D /* Default-568h@2x.png */; };
 		263D0D1C178893E700DF385D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263D0D1A178893E700DF385D /* MainStoryboard.storyboard */; };
 		263D0D1F178893E700DF385D /* AvailableShiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */; };
+		263D0D271788A76A00DF385D /* Shift.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D261788A76A00DF385D /* Shift.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		263D0D1B178893E700DF385D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		263D0D1D178893E700DF385D /* AvailableShiftsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvailableShiftsViewController.h; sourceTree = "<group>"; };
 		263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvailableShiftsViewController.m; sourceTree = "<group>"; };
+		263D0D251788A76A00DF385D /* Shift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shift.h; sourceTree = "<group>"; };
+		263D0D261788A76A00DF385D /* Shift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shift.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				263D0D1A178893E700DF385D /* MainStoryboard.storyboard */,
 				263D0D1D178893E700DF385D /* AvailableShiftsViewController.h */,
 				263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */,
+				263D0D251788A76A00DF385D /* Shift.h */,
+				263D0D261788A76A00DF385D /* Shift.m */,
 				263D0D09178893E700DF385D /* Supporting Files */,
 			);
 			path = Swapper;
@@ -177,6 +182,7 @@
 				263D0D0F178893E700DF385D /* main.m in Sources */,
 				263D0D13178893E700DF385D /* SwapperAppDelegate.m in Sources */,
 				263D0D1F178893E700DF385D /* AvailableShiftsViewController.m in Sources */,
+				263D0D271788A76A00DF385D /* Shift.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
