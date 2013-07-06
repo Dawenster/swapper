@@ -17,7 +17,7 @@
 		263D0D17178893E700DF385D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 263D0D16178893E700DF385D /* Default@2x.png */; };
 		263D0D19178893E700DF385D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 263D0D18178893E700DF385D /* Default-568h@2x.png */; };
 		263D0D1C178893E700DF385D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263D0D1A178893E700DF385D /* MainStoryboard.storyboard */; };
-		263D0D1F178893E700DF385D /* SwapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D1E178893E700DF385D /* SwapperViewController.m */; };
+		263D0D1F178893E700DF385D /* AvailableShiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +35,8 @@
 		263D0D16178893E700DF385D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		263D0D18178893E700DF385D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		263D0D1B178893E700DF385D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		263D0D1D178893E700DF385D /* SwapperViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwapperViewController.h; sourceTree = "<group>"; };
-		263D0D1E178893E700DF385D /* SwapperViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwapperViewController.m; sourceTree = "<group>"; };
+		263D0D1D178893E700DF385D /* AvailableShiftsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvailableShiftsViewController.h; sourceTree = "<group>"; };
+		263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvailableShiftsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +86,8 @@
 				263D0D11178893E700DF385D /* SwapperAppDelegate.h */,
 				263D0D12178893E700DF385D /* SwapperAppDelegate.m */,
 				263D0D1A178893E700DF385D /* MainStoryboard.storyboard */,
-				263D0D1D178893E700DF385D /* SwapperViewController.h */,
-				263D0D1E178893E700DF385D /* SwapperViewController.m */,
+				263D0D1D178893E700DF385D /* AvailableShiftsViewController.h */,
+				263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */,
 				263D0D09178893E700DF385D /* Supporting Files */,
 			);
 			path = Swapper;
@@ -176,7 +176,7 @@
 			files = (
 				263D0D0F178893E700DF385D /* main.m in Sources */,
 				263D0D13178893E700DF385D /* SwapperAppDelegate.m in Sources */,
-				263D0D1F178893E700DF385D /* SwapperViewController.m in Sources */,
+				263D0D1F178893E700DF385D /* AvailableShiftsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +264,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swapper/Swapper-Prefix.pch";
 				INFOPLIST_FILE = "Swapper/Swapper-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -275,6 +276,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swapper/Swapper-Prefix.pch";
 				INFOPLIST_FILE = "Swapper/Swapper-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

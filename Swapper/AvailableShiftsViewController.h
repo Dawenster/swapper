@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SwapperViewController : UIViewController
+@interface AvailableShiftsViewController : UITableViewController
 
 @end
