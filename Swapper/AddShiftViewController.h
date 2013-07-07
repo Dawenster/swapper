@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DatePickerViewController.h"
+#import "LocationPickerViewController.h"
 
 @class AddShiftViewController;
 @class Shift;
@@ -18,7 +20,7 @@
 
 @end
 
-@interface AddShiftViewController : UITableViewController <UITextFieldDelegate>
+@interface AddShiftViewController : UITableViewController <UITextFieldDelegate, DatePickerViewControllerDelegate, LocationPickerViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 @property (strong, nonatomic) IBOutlet UITextField *detailField;
@@ -27,6 +29,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *emailField;
 @property (strong, nonatomic) IBOutlet UITextView *notesField;
 @property (nonatomic, weak) id <AddShiftViewControllerDelegate> delegate;
+@property (nonatomic, strong) IBOutlet UILabel *shiftDateLabel;
+@property (nonatomic, strong) IBOutlet UILabel *shiftLocationLabel;
 
 - (IBAction)cancel;
 - (IBAction)done;

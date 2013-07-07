@@ -50,7 +50,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Cell number %d clicked", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

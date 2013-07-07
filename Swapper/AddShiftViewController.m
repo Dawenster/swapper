@@ -13,7 +13,10 @@
 
 @end
 
-@implementation AddShiftViewController
+@implementation AddShiftViewController {
+    NSDate *date;
+    NSString *location;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -24,15 +27,42 @@
     return self;
 }
 
+- (void)updateShiftDateLabel
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    self.shiftDateLabel.text = [formatter stringFromDate:date];
+}
+
+- (void)updateShiftLocationLabel
+{
+    self.shiftLocationLabel.text = location;
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    NSDate *today = [NSDate date];
+    
+    NSDateComponents *futureComponents = [NSDateComponents new];
+    futureComponents.day = 7 ;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    NSDate *futureDate = [gregorian dateByAddingComponents:futureComponents toDate:today options:0];
+    NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: futureDate];
+    
+    [components setHour: 7];
+    [components setMinute: 30];
+    [components setSecond: 0];
+    
+    date = [gregorian dateFromComponents: components];
+    
+    NSString *defaultLocation = @"Burnaby General Hospital";
+    location = defaultLocation;
+    
+    [super viewDidLoad];
+    [self updateShiftDateLabel];
+    [self updateShiftLocationLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +80,10 @@
 {
     if (self.doneBarButton.enabled) {
         Shift *shift = [[Shift alloc] init];
+        
+        shift.location = location;
         shift.locationDetail = self.detailField.text;
+        shift.date = self->date;
         shift.duration = self.durationField.text.intValue;
         shift.name = self.nameField.text;
         shift.email = self.emailField.text;
@@ -98,6 +131,45 @@
         ([self.emailField.text length] > 0 || (self.emailField == theTextField && [newText length] > 0)));
     
     return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"PickDate"]) {
+        DatePickerViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+        controller.date = date;
+    } else if ([segue.identifier isEqualToString:@"PickLocation"]) {
+        LocationPickerViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+        controller.location = location;
+    }
+}
+
+- (void)datePickerDidCancel:(DatePickerViewController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)datePicker:(DatePickerViewController *)picker didPickDate:(NSDate *)shiftDate
+{
+    date = shiftDate;
+    [self updateShiftDateLabel];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)locationPickerDidCancel:(LocationPickerViewController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)locationPicker:(LocationPickerViewController *)picker didPickLocation:(NSString *)shiftLocation
+{
+    location = shiftLocation;
+    [self updateShiftLocationLabel];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
