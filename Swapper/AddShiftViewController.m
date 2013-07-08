@@ -42,6 +42,11 @@
 
 - (void)viewDidLoad
 {
+    UITextView *textView = (UITextView *)[self.notesField viewWithTag:2000];
+    textView.layer.cornerRadius = 5;
+    textView.clipsToBounds = YES;
+    [textView.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]]; [textView.layer setBorderWidth:2.0];
+    
     NSDate *today = [NSDate date];
     
     NSDateComponents *futureComponents = [NSDateComponents new];
