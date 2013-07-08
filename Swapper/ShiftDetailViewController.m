@@ -52,12 +52,12 @@
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
     [formatter setLocale:locale];
     
-    [formatter setDateFormat:@"EEE, MMM d"];
+    [formatter setDateFormat:@"MMM d, YYYY (EEE)"];
     NSString *dateAsString = [formatter stringFromDate:self.shift.date];
     [formatter setDateFormat:@"HH:mm"];
     NSString *timeAsString = [formatter stringFromDate:self.shift.date];
     
-    NSString *timeAndDuration = [NSString stringWithFormat:@"%@ for %dhrs",timeAsString,self.shift.duration];
+    NSString *timeAndDuration = [NSString stringWithFormat:@"%@ for %d hours",timeAsString,self.shift.duration];
     
     switch (indexPath.row) {
         {case 0:
