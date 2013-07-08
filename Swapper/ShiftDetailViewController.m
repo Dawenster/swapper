@@ -86,12 +86,26 @@
         
         {case 4:
             cell = [tableView dequeueReusableCellWithIdentifier:@"SwappingCell"];
-            UILabel *swapping = (UILabel *)[cell viewWithTag:1003];
-            swapping.text = timeAndDuration;
+            UITextView *swapping = (UITextView *)[cell viewWithTag:1004];
+            swapping.text = self.shift.notes;
             break;}
     }
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 4) {
+        NSString *cellText = self.shift.notes;
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+        CGSize constraintSize = CGSizeMake(330.0f, MAXFLOAT);
+        CGSize labelSize_val = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        
+        NSLog(@"%@", cellText);
+        NSLog(@"Label height: %f", labelSize_val.height);
+        return labelSize_val.height + 20;
+    }
+    return 40;
 }
 
 @end

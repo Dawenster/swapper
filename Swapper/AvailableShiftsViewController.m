@@ -31,7 +31,7 @@
     shift.duration = 12;
     shift.email = @"david@gmail.com";
     shift.taken = NO;
-    shift.notes = @"1. Monday, Jul 31 - Day, 2. Wednesday, Aug 2 - Night, 3. Thursday, Aug 3 - Day";
+    shift.notes = @"1. Monday, Jul 31 - Day\n2. Wednesday, Aug 2 - Night\n3. Thursday, Aug 3 - Day";
     
     [shifts addObject:shift];
 }
