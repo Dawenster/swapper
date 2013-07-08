@@ -22,6 +22,8 @@
 		263D0D2A1788C49100DF385D /* AddShiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D291788C49000DF385D /* AddShiftViewController.m */; };
 		263D0D2D1788E51800DF385D /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D2C1788E51700DF385D /* DatePickerViewController.m */; };
 		263D0D33178942E600DF385D /* LocationPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D32178942E600DF385D /* LocationPickerViewController.m */; };
+		263D0D38178A301800DF385D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263D0D37178A301800DF385D /* QuartzCore.framework */; };
+		263D0D3B178A35FA00DF385D /* ShiftDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D0D3A178A35FA00DF385D /* ShiftDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,9 @@
 		263D0D2C1788E51700DF385D /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		263D0D31178942E500DF385D /* LocationPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationPickerViewController.h; sourceTree = "<group>"; };
 		263D0D32178942E600DF385D /* LocationPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPickerViewController.m; sourceTree = "<group>"; };
+		263D0D37178A301800DF385D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		263D0D39178A35FA00DF385D /* ShiftDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDetailViewController.h; sourceTree = "<group>"; };
+		263D0D3A178A35FA00DF385D /* ShiftDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				263D0D38178A301800DF385D /* QuartzCore.framework in Frameworks */,
 				263D0D03178893E700DF385D /* UIKit.framework in Frameworks */,
 				263D0D05178893E700DF385D /* Foundation.framework in Frameworks */,
 				263D0D07178893E700DF385D /* CoreGraphics.framework in Frameworks */,
@@ -85,6 +91,7 @@
 		263D0D01178893E700DF385D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				263D0D37178A301800DF385D /* QuartzCore.framework */,
 				263D0D02178893E700DF385D /* UIKit.framework */,
 				263D0D04178893E700DF385D /* Foundation.framework */,
 				263D0D06178893E700DF385D /* CoreGraphics.framework */,
@@ -98,16 +105,18 @@
 				263D0D1A178893E700DF385D /* MainStoryboard.storyboard */,
 				263D0D11178893E700DF385D /* SwapperAppDelegate.h */,
 				263D0D12178893E700DF385D /* SwapperAppDelegate.m */,
-				263D0D281788C49000DF385D /* AddShiftViewController.h */,
-				263D0D291788C49000DF385D /* AddShiftViewController.m */,
+				263D0D251788A76A00DF385D /* Shift.h */,
+				263D0D261788A76A00DF385D /* Shift.m */,
 				263D0D1D178893E700DF385D /* AvailableShiftsViewController.h */,
 				263D0D1E178893E700DF385D /* AvailableShiftsViewController.m */,
+				263D0D281788C49000DF385D /* AddShiftViewController.h */,
+				263D0D291788C49000DF385D /* AddShiftViewController.m */,
 				263D0D31178942E500DF385D /* LocationPickerViewController.h */,
 				263D0D32178942E600DF385D /* LocationPickerViewController.m */,
 				263D0D2B1788E51700DF385D /* DatePickerViewController.h */,
 				263D0D2C1788E51700DF385D /* DatePickerViewController.m */,
-				263D0D251788A76A00DF385D /* Shift.h */,
-				263D0D261788A76A00DF385D /* Shift.m */,
+				263D0D39178A35FA00DF385D /* ShiftDetailViewController.h */,
+				263D0D3A178A35FA00DF385D /* ShiftDetailViewController.m */,
 				263D0D09178893E700DF385D /* Supporting Files */,
 			);
 			path = Swapper;
@@ -201,6 +210,7 @@
 				263D0D2A1788C49100DF385D /* AddShiftViewController.m in Sources */,
 				263D0D2D1788E51800DF385D /* DatePickerViewController.m in Sources */,
 				263D0D33178942E600DF385D /* LocationPickerViewController.m in Sources */,
+				263D0D3B178A35FA00DF385D /* ShiftDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

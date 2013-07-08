@@ -15,12 +15,25 @@
 
 @implementation AvailableShiftsViewController {
     NSMutableArray *shifts;
+//    Shift *selectedShift;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	shifts = [[NSMutableArray alloc] initWithCapacity:20];
+    
+    Shift *shift = [Shift alloc];
+    shift.name = @"David Wen";
+    shift.location = @"Vancouver General Hospital";
+    shift.locationDetail = @"Unit 6B";
+    shift.date = [NSDate date];
+    shift.duration = 12;
+    shift.email = @"david@gmail.com";
+    shift.taken = NO;
+    shift.notes = @"1. Monday, Jul 31 - Day, 2. Wednesday, Aug 2 - Night, 3. Thursday, Aug 3 - Day";
+    
+    [shifts addObject:shift];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +63,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    Shift *shift = [shifts objectAtIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,6 +97,13 @@
         UINavigationController *navigationController = segue.destinationViewController;
         AddShiftViewController *controller = (AddShiftViewController *)navigationController.topViewController;
         controller.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"ViewDetail"]) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        Shift *selectedShift = [shifts objectAtIndex:path.row];
+        
+        UIViewController *viewController = segue.destinationViewController;
+        ShiftDetailViewController *controller = (ShiftDetailViewController *)viewController;
+        controller.shift = selectedShift;
     }
 }
 

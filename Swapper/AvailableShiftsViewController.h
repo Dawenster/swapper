@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddShiftViewController.h"
+#import "ShiftDetailViewController.h"
 
 @interface AvailableShiftsViewController : UITableViewController <AddShiftViewControllerDelegate>
 

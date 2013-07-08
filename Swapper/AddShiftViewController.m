@@ -116,7 +116,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self.detailField becomeFirstResponder];
+    // [self.detailField becomeFirstResponder];
 }
 
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
