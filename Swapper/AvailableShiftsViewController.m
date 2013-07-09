@@ -91,6 +91,22 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)addShiftViewController:(AddShiftViewController *)controller didFinishEditingShift:(Shift *)shift
+{
+    int rowIndex = [shifts indexOfObject:shift];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    UILabel *title = (UILabel *)[cell viewWithTag:1000];
+    UILabel *subTitle = (UILabel *)[cell viewWithTag:1001];
+    
+    title.text = [shift formatTitle:(shift)];
+    subTitle.text = [shift formatSubTitle:(shift)];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     Shift *shift = [shifts objectAtIndex:indexPath.row];

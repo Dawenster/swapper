@@ -17,7 +17,8 @@
 @protocol AddShiftViewControllerDelegate <NSObject>
 
 - (void)addShiftViewControllerDidCancel:(AddShiftViewController *)controller;
-- (void)addShiftViewController:(AddShiftViewController *)controller didFinishAddingShift:(Shift *)item;
+- (void)addShiftViewController:(AddShiftViewController *)controller didFinishAddingShift:(Shift *)shift;
+- (void)addShiftViewController:(AddShiftViewController *)controller didFinishEditingShift:(Shift *)shift;
 
 @end
 

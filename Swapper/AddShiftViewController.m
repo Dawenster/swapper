@@ -99,17 +99,30 @@
 - (IBAction)done
 {
     if (self.doneBarButton.enabled) {
-        Shift *shift = [[Shift alloc] init];
+        if (self.shiftToEdit == nil) {
+            Shift *shift = [[Shift alloc] init];
+            
+            shift.location = location;
+            shift.locationDetail = self.detailField.text;
+            shift.date = self->date;
+            shift.duration = self.durationField.text.intValue;
+            shift.name = self.nameField.text;
+            shift.email = self.emailField.text;
+            shift.notes = self.notesField.text;
+            
+            [self.delegate addShiftViewController:self didFinishAddingShift:shift];
+        } else {
+            self.shiftToEdit.location = location;
+            self.shiftToEdit.locationDetail = self.detailField.text;
+            self.shiftToEdit.date = self->date;
+            self.shiftToEdit.duration = self.durationField.text.intValue;
+            self.shiftToEdit.name = self.nameField.text;
+            self.shiftToEdit.email = self.emailField.text;
+            self.shiftToEdit.notes = self.notesField.text;
+            
+            [self.delegate addShiftViewController:self didFinishEditingShift:_shiftToEdit];
+        }
         
-        shift.location = location;
-        shift.locationDetail = self.detailField.text;
-        shift.date = self->date;
-        shift.duration = self.durationField.text.intValue;
-        shift.name = self.nameField.text;
-        shift.email = self.emailField.text;
-        shift.notes = self.notesField.text;
-        
-        [self.delegate addShiftViewController:self didFinishAddingShift:shift];
     }
 }
 
