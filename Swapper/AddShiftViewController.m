@@ -113,7 +113,7 @@
             shift.uniqueID = [self generateUniqueID];
             
             [self.delegate addShiftViewController:self didFinishAddingShift:shift];
-            [self makeCreateRequestToServer:(shift)];
+            [self makeRequestToServer:(shift) requestMethod:(@"POST")];
             
         } else {
             self.shiftToEdit.location = location;
@@ -125,21 +125,29 @@
             self.shiftToEdit.notes = self.notesField.text;
             
             [self.delegate addShiftViewController:self didFinishEditingShift:_shiftToEdit];
+            [self makeRequestToServer:(self.shiftToEdit) requestMethod:(@"PUT")];
         }
     }
 }
 
-- (void)makeCreateRequestToServer:(Shift *)shift
+- (void)makeRequestToServer:(Shift *)shift requestMethod:(NSString *)method
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                    initWithURL:[NSURL URLWithString:@"http://swapperapp.herokuapp.com/shifts"]];
-    
+    NSMutableURLRequest *request;
     NSString *params = [shift formatParams:(shift)];
-    NSLog(@"%@",params);
-    [request setHTTPMethod:@"POST"];
+    if ([method isEqualToString:@"POST"]) {
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://swapperapp.herokuapp.com/shifts"]];
+    } else {
+        NSString *paramsWithoutSpaces = [params stringByReplacingOccurrencesOfString:@" " withString:@"___"];
+        NSString *url = [NSString stringWithFormat:@"http://swapperapp.herokuapp.com/shifts/1?%@", paramsWithoutSpaces];
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    }
+    
+    
+    NSLog(@"%@: %@, for url: %@", method, params, request.URL);
+    [request setHTTPMethod:method];
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection * postOutput = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    NSLog(@"Post: %@", postOutput.description);
+    NSLog(@"Request: %@", postOutput.description);
 }
 
 - (NSString *)generateUniqueID

@@ -32,7 +32,7 @@
     
     NSString *loc1 = @"Burnaby General Hospital";
     NSString *loc2 = @"Vancouver General Hospital";
-    NSString *loc3 = @"Royal Columbia Hospital";
+    NSString *loc3 = @"Royal Columbian Hospital";
     NSString *loc4 = @"St. Paul\'s Hospital";
     NSString *loc5 = @"Surrey Memorial Hospital";
     

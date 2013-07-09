@@ -22,17 +22,6 @@
     [super viewDidLoad];
 	shifts = [[NSMutableArray alloc] initWithCapacity:20];
 
-//    Shift *shift = [Shift alloc];
-//    shift.name = @"David Wen";
-//    shift.location = @"Vancouver General Hospital";
-//    shift.locationDetail = @"Unit 6B";
-//    shift.date = [NSDate date];
-//    shift.duration = 12;
-//    shift.email = @"david@gmail.com";
-//    shift.taken = NO;
-//    shift.notes = @"1. Monday, Jul 31 - Day\n2. Wednesday, Aug 2 - Night\n3. Thursday, Aug 3 - Day";
-//    
-//    [shifts addObject:shift];
     [self loadShifts];
 }
 
@@ -68,6 +57,8 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Shift *shift = [shifts objectAtIndex:indexPath.row];
+    [self makeRequestToServer:(shift) requestMethod:(@"DELETE")];
     [shifts removeObjectAtIndex:indexPath.row];
     
     NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
@@ -151,6 +142,15 @@
     NSLog(@"Connection description: %@",connection.description);
 }
 
+- (void)makeRequestToServer:(Shift *)shift requestMethod:(NSString *)method
+{
+    NSString *url = [NSString stringWithFormat:@"http://swapperapp.herokuapp.com/shifts/1?uniqueID=%@", shift.uniqueID];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:method];
+    NSURLConnection * postOutput = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"Request: %@", postOutput.description);
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
     [self.responseData setLength:0];
@@ -204,6 +204,7 @@
             shift.name = result[@"name"];
             shift.email = result[@"email"];
             shift.notes = result[@"notes"];
+            shift.uniqueID = result[@"uniqueID"];
             
             [shifts addObject:shift];
         }
