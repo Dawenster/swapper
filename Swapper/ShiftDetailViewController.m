@@ -97,12 +97,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 4) {
         NSString *cellText = self.shift.notes;
-        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
-        CGSize constraintSize = CGSizeMake(330.0f, MAXFLOAT);
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+        CGSize constraintSize = CGSizeMake(185.0f, MAXFLOAT);
         CGSize labelSize_val = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-        
-        NSLog(@"%@", cellText);
-        NSLog(@"Label height: %f", labelSize_val.height);
         return labelSize_val.height + 20;
     }
     return 40;

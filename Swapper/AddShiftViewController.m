@@ -68,6 +68,21 @@
     [super viewDidLoad];
     [self updateShiftDateLabel];
     [self updateShiftLocationLabel];
+    
+    if (self.shiftToEdit != nil) {
+        self.title = @"Edit shift";
+        location = self.shiftToEdit.location;
+        [self updateShiftLocationLabel];
+        self.detailField.text = self.shiftToEdit.locationDetail;
+        date = self.shiftToEdit.date;
+        [self updateShiftDateLabel];
+        NSString *duration = [NSString stringWithFormat:@"%d", self.shiftToEdit.duration];
+        self.durationField.text = duration;
+        self.nameField.text = self.shiftToEdit.name;
+        self.emailField.text = self.shiftToEdit.email;
+        self.notesField.text = self.shiftToEdit.notes;
+        self.doneBarButton.enabled = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning

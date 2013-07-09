@@ -33,6 +33,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *shiftDateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *shiftLocationLabel;
 
+@property (nonatomic, strong) Shift *shiftToEdit;
+
 - (IBAction)cancel;
 - (IBAction)done;
 

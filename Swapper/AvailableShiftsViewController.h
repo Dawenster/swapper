@@ -12,4 +12,8 @@
 
 @interface AvailableShiftsViewController : UITableViewController <AddShiftViewControllerDelegate>
 
+@property (nonatomic, strong) NSMutableData *responseData;
+
+- (IBAction)reloadShifts;
+
 @end
