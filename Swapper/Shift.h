@@ -10,9 +10,6 @@
 
 @interface Shift : NSObject
 
-- (NSString *)formatTitle:(Shift *)shift;
-- (NSString * )formatSubTitle:(Shift *)shift;
-
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *locationDetail;
@@ -21,5 +18,10 @@
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, assign) BOOL taken;
 @property (nonatomic, copy) NSString *notes;
+@property (nonatomic, copy) NSString *uniqueID;
+
+- (NSString *)formatTitle:(Shift *)shift;
+- (NSString * )formatSubTitle:(Shift *)shift;
+- (NSString *)formatParams:(Shift *)shift;
 
 @end

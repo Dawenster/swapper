@@ -33,8 +33,8 @@
 @property (nonatomic, weak) id <AddShiftViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UILabel *shiftDateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *shiftLocationLabel;
-
 @property (nonatomic, strong) Shift *shiftToEdit;
+@property (nonatomic, strong) NSMutableData *responseData;
 
 - (IBAction)cancel;
 - (IBAction)done;

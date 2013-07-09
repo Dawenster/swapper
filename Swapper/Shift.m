@@ -34,4 +34,13 @@
     return subTitleText;
 }
 
+- (NSString *)formatParams:(Shift *)shift
+{
+    NSString *params = [NSString stringWithFormat:
+        @"location=%@&locationDetail=%@&date=%@&duration=%d&name=%@&email=%@&taken=false&notes=%@&uniqueID=%@",
+        shift.location, shift.locationDetail, shift.date, shift.duration, shift.name, shift.email, shift.notes, shift.uniqueID];
+    
+    return params;
+}
+
 @end

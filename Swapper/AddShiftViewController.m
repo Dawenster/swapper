@@ -63,8 +63,6 @@
     date = [gregorian dateFromComponents: components];
     
     [super viewDidLoad];
-    [self updateShiftDateLabel];
-    [self updateShiftLocationLabel];
     
     if (self.shiftToEdit == nil) {
         NSString *defaultLocation = @"Burnaby General Hospital";
@@ -84,6 +82,8 @@
         
         self.doneBarButton.enabled = YES;
     }
+    [self updateShiftLocationLabel];
+    [self updateShiftDateLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,8 +110,11 @@
             shift.name = self.nameField.text;
             shift.email = self.emailField.text;
             shift.notes = self.notesField.text;
+            shift.uniqueID = [self generateUniqueID];
             
             [self.delegate addShiftViewController:self didFinishAddingShift:shift];
+            [self makeCreateRequestToServer:(shift)];
+            
         } else {
             self.shiftToEdit.location = location;
             self.shiftToEdit.locationDetail = self.detailField.text;
@@ -123,8 +126,33 @@
             
             [self.delegate addShiftViewController:self didFinishEditingShift:_shiftToEdit];
         }
-        
     }
+}
+
+- (void)makeCreateRequestToServer:(Shift *)shift
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                    initWithURL:[NSURL URLWithString:@"http://swapperapp.herokuapp.com/shifts"]];
+    
+    NSString *params = [shift formatParams:(shift)];
+    NSLog(@"%@",params);
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLConnection * postOutput = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"Post: %@", postOutput.description);
+}
+
+- (NSString *)generateUniqueID
+{
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    int len = 10;
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+    }
+    
+    return randomString;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -149,8 +177,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    // [self.detailField becomeFirstResponder];
 }
 
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
