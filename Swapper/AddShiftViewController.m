@@ -62,14 +62,14 @@
     
     date = [gregorian dateFromComponents: components];
     
-    NSString *defaultLocation = @"Burnaby General Hospital";
-    location = defaultLocation;
-    
     [super viewDidLoad];
     [self updateShiftDateLabel];
     [self updateShiftLocationLabel];
     
-    if (self.shiftToEdit != nil) {
+    if (self.shiftToEdit == nil) {
+        NSString *defaultLocation = @"Burnaby General Hospital";
+        location = defaultLocation;
+    } else {
         self.title = @"Edit shift";
         location = self.shiftToEdit.location;
         [self updateShiftLocationLabel];
@@ -81,6 +81,7 @@
         self.nameField.text = self.shiftToEdit.name;
         self.emailField.text = self.shiftToEdit.email;
         self.notesField.text = self.shiftToEdit.notes;
+        
         self.doneBarButton.enabled = YES;
     }
 }

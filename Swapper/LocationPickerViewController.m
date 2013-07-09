@@ -32,11 +32,21 @@
     
     NSString *loc1 = @"Burnaby General Hospital";
     NSString *loc2 = @"Vancouver General Hospital";
-    NSString *loc3 = @"Royal Columbian Hospital";
-    NSString *loc4 = @"St. Paul's Hospital";
+    NSString *loc3 = @"Royal Columbia Hospital";
+    NSString *loc4 = @"St. Paul\'s Hospital";
     NSString *loc5 = @"Surrey Memorial Hospital";
     
 	locations = [NSArray arrayWithObjects:loc1, loc2, loc3, loc4, loc5, nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    int index = [locations indexOfObject:self.location];
+    NSLog(@"location: %@", self.location);
+    NSLog(@"index: %d", index);
+    [self.LocationPicker selectRow:index inComponent:0 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

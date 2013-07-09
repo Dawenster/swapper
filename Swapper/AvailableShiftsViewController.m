@@ -146,7 +146,7 @@
     [shifts removeAllObjects];
     NSLog(@"viewdidload");
     self.responseData = [NSMutableData data];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://swapperapp.herokuapp.com/shifts"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://swapperapp.herokuapp.com/shifts"]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     NSLog(@"Connection description: %@",connection.description);
 }
