@@ -8,6 +8,7 @@
 
 #import "AvailableShiftsViewController.h"
 #import "Shift.h"
+#import "MBProgressHUD.h"
 
 @interface AvailableShiftsViewController ()
 
@@ -21,7 +22,6 @@
 {
     [super viewDidLoad];
 	shifts = [[NSMutableArray alloc] initWithCapacity:20];
-
     [self loadShifts];
 }
 
@@ -135,11 +135,18 @@
 - (void)loadShifts
 {
     [shifts removeAllObjects];
-    NSLog(@"viewdidload");
-    self.responseData = [NSMutableData data];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://swapperapp.herokuapp.com/shifts"]];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    NSLog(@"Connection description: %@",connection.description);
+    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.labelText = @"Loading";
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"viewdidload");
+            self.responseData = [NSMutableData data];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://swapperapp.herokuapp.com/shifts"]];
+            NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            NSLog(@"Connection description: %@",connection.description);
+        });
+    });
 }
 
 - (void)makeRequestToServer:(Shift *)shift requestMethod:(NSString *)method
@@ -163,6 +170,9 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
     NSLog(@"Connection failed: %@", [error description]);
+    HUD.mode = MBProgressHUDModeText;
+    HUD.labelText = @"Error loading... try again? :)";
+    [HUD hide:YES afterDelay:2];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -211,8 +221,11 @@
         NSLog(@"Num shifts: %d", [shifts count]);
         Shift *selectedShift = [shifts objectAtIndex:[shifts count] - 1];
         NSLog(@"Last shift's date: %@", [selectedShift formatTitle:(selectedShift)]);
-        [self.tableView reloadData];
+        
     }
+    [self.tableView reloadData];
+    
+    [HUD hide:YES];
 }
 
 - (void)viewDidUnload {

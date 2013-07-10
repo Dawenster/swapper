@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "AddShiftViewController.h"
 #import "ShiftDetailViewController.h"
+#import "MBProgressHUD.h"
 
-@interface AvailableShiftsViewController : UITableViewController <AddShiftViewControllerDelegate>
+@interface AvailableShiftsViewController : UITableViewController <AddShiftViewControllerDelegate> {
+    MBProgressHUD *HUD;
+}
 
 @property (nonatomic, strong) NSMutableData *responseData;
 
