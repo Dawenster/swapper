@@ -86,7 +86,9 @@
         
         {case 4:
             cell = [tableView dequeueReusableCellWithIdentifier:@"SwappingCell"];
-            UITextView *swapping = (UITextView *)[cell viewWithTag:1004];
+            UILabel *swapping = (UILabel *)[cell viewWithTag:1004];
+            swapping.lineBreakMode = UILineBreakModeWordWrap;
+            swapping.numberOfLines = 0;
             swapping.text = self.shift.notes;
             break;}
     }
