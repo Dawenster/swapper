@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Shift.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ShiftDetailViewController : UIViewController
+@interface ShiftDetailViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) Shift *shift;
+
+- (IBAction)sendEmail;
 
 @end

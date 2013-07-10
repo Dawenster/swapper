@@ -105,4 +105,66 @@
     return 40;
 }
 
+- (IBAction)sendEmail
+{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+        [formatter setLocale:locale];
+        
+        [formatter setDateFormat:@"MMM d, YYYY (EEE)"];
+        NSString *dateAsString = [formatter stringFromDate:self.shift.date];
+        [formatter setDateFormat:@"HH:mm"];
+        NSString *timeAsString = [formatter stringFromDate:self.shift.date];
+        
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+        [mailer setSubject:[NSString stringWithFormat:@"Swap request: %@ at %@", dateAsString, timeAsString]];
+        NSArray *toRecipients = [NSArray arrayWithObjects:self.shift.email, nil];
+        [mailer setToRecipients:toRecipients];
+        NSString *emailBody = [NSString stringWithFormat:@"Hi %@,\n\nI can take your shift on %@ at %@.  Let me know if that works for you!", self.shift.name, dateAsString, timeAsString];
+        [mailer setMessageBody:emailBody isHTML:NO];
+        [self presentModalViewController:mailer animated:YES];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
+            message:@"Your device doesn't support the composer sheet"
+            delegate:nil
+            cancelButtonTitle:@"OK"
+            otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved: you saved the email message in the drafts folder.");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
+            break;
+        default:
+            NSLog(@"Mail not sent.");
+            break;
+    }
+    // Remove the mail view
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 55;
+}
+
 @end
